@@ -41,14 +41,14 @@ security:
   user:
     password: none
   oauth2:
+    sso:
+      loginPath: /login
     client:
       accessTokenUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/token
       userAuthorizationUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/authorize
       clientId: acme
       clientSecret: acmesecret
-      registered-redirect-uri: http://localhost:8765/login
-      pre-established-redirect-uri: http://localhost:8765/login
-      use-current-uri: false
+      
     resource:
       jwt:
         keyValue: |
@@ -69,6 +69,10 @@ server:
 zuul:
   ignoredServices: '*'
   routes:
+    uaa:
+      path: /uaa/**
+      serviceId: authserver
+      sensitiveHeaders:
     user-service:
       path: /user-service/**
       stripPrefix: false
