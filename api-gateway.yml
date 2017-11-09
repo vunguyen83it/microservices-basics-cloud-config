@@ -41,8 +41,7 @@ security:
   user:
     password: none
   oauth2:
-    sso:
-      loginPath: /login
+   
     client:
       accessTokenUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/token
       userAuthorizationUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/authorize
